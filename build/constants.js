@@ -13,7 +13,9 @@ var _getConfig = getConfig(),
 
 // general constants
 var LOCALHOST = 'localhost';
+var PRIVACY_POLICY_PAGE_URL = "".concat(LMS_BASE_URL, "/privacy");
 var COOKIE_POLICY_PAGE_URL = "".concat(LMS_BASE_URL, "/cookies");
+var TOC_POLICY_PAGE_URL = "".concat(LMS_BASE_URL, "/terms-and-conditions");
 // end general constants
 
 // i18n related constants
@@ -26,9 +28,13 @@ var SPANISH_LANGUAGE_CODE = 'es';
 var IETF_TAGS = Object.freeze([ENGLISH_IETF_TAG, SPANISH_IETF_TAG]);
 var IETF_TAGS_TO_CONTAINER_ROLE_LABEL = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Notice about use of cookies on ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
 var IETF_TAGS_TO_CLOSE_BUTTON_LABEL = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Close the notice about use of cookies on ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Cerrar aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
-var bannerLinkOpen = "<a href=\"".concat(COOKIE_POLICY_PAGE_URL, "\" class=\"policy-link\" target=\"_blank\">");
-var bannerLinkClose = '</a>';
-var IETF_TAGS_TO_BANNER_TEXT = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ".concat(bannerLinkOpen, "Cookie Policy").concat(bannerLinkClose, ". For a complete overview of all cookies used, please see your personal settings.\n  ")), SPANISH_IETF_TAG, "Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga m\xE1s informaci\xF3n al respecto en ".concat(bannerLinkOpen, "Pol\xEDtica de cookies").concat(bannerLinkClose, ". Para obtener una descripci\xF3n completa de todas las cookies utilizadas, consulte su configuraci\xF3n personal.")));
+var bannerPrivacyLinkOpen = "<a href=\"".concat(PRIVACY_POLICY_PAGE_URL, "\" class=\"policy-link\" target=\"_blank\">");
+var bannerPrivacyLinkClose = '</a>';
+var bannerCookiesLinkOpen = "<a href=\"".concat(COOKIE_POLICY_PAGE_URL, "\" class=\"policy-link\" target=\"_blank\">");
+var bannerCookiesLinkClose = '</a>';
+var bannerTermsLinkOpen = "<a href=\"".concat(TOC_POLICY_PAGE_URL, "\" class=\"policy-link\" target=\"_blank\">");
+var bannerTermsLinkClose = '</a>';
+var IETF_TAGS_TO_BANNER_TEXT = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we\u2019ll assume that you are happy to receive all cookies on the website.\n  <br>\n  ".concat(bannerPrivacyLinkOpen, "Privacy notice").concat(bannerPrivacyLinkClose, " / ").concat(bannerCookiesLinkOpen, "Cookie notice").concat(bannerCookiesLinkClose, " / ").concat(bannerTermsLinkOpen, "Terms and conditions").concat(bannerTermsLinkClose, "\n  ")), SPANISH_IETF_TAG, "Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga m\xE1s informaci\xF3n al respecto en ".concat(bannerCookiesLinkOpen, "Pol\xEDtica de cookies").concat(bannerCookiesLinkClose, ". Para obtener una descripci\xF3n completa de todas las cookies utilizadas, consulte su configuraci\xF3n personal.")));
 var IETF_TAGS_TO_LANGUAGE_CODE = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, ENGLISH_LANGUAGE_CODE), SPANISH_IETF_TAG, SPANISH_LANGUAGE_CODE));
 var LANGUAGE_CODE_TO_IETF_TAGS = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_LANGUAGE_CODE, ENGLISH_IETF_TAG), SPANISH_LANGUAGE_CODE, SPANISH_IETF_TAG));
 // end of i18n constants

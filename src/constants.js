@@ -8,7 +8,9 @@ const { LMS_BASE_URL, SITE_NAME } = getConfig();
 
 // general constants
 const LOCALHOST = 'localhost';
+const PRIVACY_POLICY_PAGE_URL = `${LMS_BASE_URL}/privacy`;
 const COOKIE_POLICY_PAGE_URL = `${LMS_BASE_URL}/cookies`;
+const TOC_POLICY_PAGE_URL = `${LMS_BASE_URL}/terms-and-conditions`;
 // end general constants
 
 // i18n related constants
@@ -29,12 +31,18 @@ const IETF_TAGS_TO_CLOSE_BUTTON_LABEL = Object.freeze({
   [ENGLISH_IETF_TAG]: `Close the notice about use of cookies on ${SITE_NAME}.`,
   [SPANISH_IETF_TAG]: `Cerrar aviso sobre el uso de cookies en ${SITE_NAME}.`,
 });
-const bannerLinkOpen = `<a href="${COOKIE_POLICY_PAGE_URL}" class="policy-link" target="_blank">`;
-const bannerLinkClose = '</a>';
+const bannerPrivacyLinkOpen = `<a href="${PRIVACY_POLICY_PAGE_URL}" class="policy-link" target="_blank">`;
+const bannerPrivacyLinkClose = '</a>';
+const bannerCookiesLinkOpen = `<a href="${COOKIE_POLICY_PAGE_URL}" class="policy-link" target="_blank">`;
+const bannerCookiesLinkClose = '</a>';
+const bannerTermsLinkOpen = `<a href="${TOC_POLICY_PAGE_URL}" class="policy-link" target="_blank">`;
+const bannerTermsLinkClose = '</a>';
 const IETF_TAGS_TO_BANNER_TEXT = Object.freeze({
-  [ENGLISH_IETF_TAG]: `We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ${bannerLinkOpen}Cookie Policy${bannerLinkClose}. For a complete overview of all cookies used, please see your personal settings.
+  [ENGLISH_IETF_TAG]: `We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we’ll assume that you are happy to receive all cookies on the website.
+  <br>
+  ${bannerPrivacyLinkOpen}Privacy notice${bannerPrivacyLinkClose} / ${bannerCookiesLinkOpen}Cookie notice${bannerCookiesLinkClose} / ${bannerTermsLinkOpen}Terms and conditions${bannerTermsLinkClose}
   `,
-  [SPANISH_IETF_TAG]: `Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga más información al respecto en ${bannerLinkOpen}Política de cookies${bannerLinkClose}. Para obtener una descripción completa de todas las cookies utilizadas, consulte su configuración personal.`,
+  [SPANISH_IETF_TAG]: `Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga más información al respecto en ${bannerCookiesLinkOpen}Política de cookies${bannerCookiesLinkClose}. Para obtener una descripción completa de todas las cookies utilizadas, consulte su configuración personal.`,
 });
 const IETF_TAGS_TO_LANGUAGE_CODE = Object.freeze({
   [ENGLISH_IETF_TAG]: ENGLISH_LANGUAGE_CODE,
