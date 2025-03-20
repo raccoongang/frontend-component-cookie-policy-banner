@@ -9,6 +9,7 @@ import {
 import {
   ENGLISH_IETF_TAG,
   SPANISH_IETF_TAG,
+  UKRAINIAN_IETF_TAG,
   IETF_TAGS_TO_CLOSE_BUTTON_LABEL,
   IETF_TAGS_TO_CONTAINER_ROLE_LABEL,
   IETF_TAGS_TO_LANGUAGE_CODE,
@@ -104,6 +105,7 @@ CookieBanner.propTypes = {
   policyText: PropTypes.shape({
     [ENGLISH_IETF_TAG]: PropTypes.string,
     [SPANISH_IETF_TAG]: PropTypes.string,
+    [UKRAINIAN_IETF_TAG]: PropTypes.string,
   }),
   isViewedCookieName: PropTypes.string,
 };

@@ -17,7 +17,7 @@ import React, { Component } from 'react';
 import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import { APP_CONFIG_INITIALIZED, mergeConfig, subscribe } from '@edx/frontend-platform';
-import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
+import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
 subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
@@ -110,7 +110,7 @@ CookieBanner.defaultProps = {
 CookieBanner.propTypes = {
   onClose: PropTypes.func,
   languageCode: PropTypes.string,
-  policyText: PropTypes.shape(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, PropTypes.string), SPANISH_IETF_TAG, PropTypes.string)),
+  policyText: PropTypes.shape(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, PropTypes.string), SPANISH_IETF_TAG, PropTypes.string), UKRAINIAN_IETF_TAG, PropTypes.string)),
   isViewedCookieName: PropTypes.string
 };
 export default CookieBanner;
