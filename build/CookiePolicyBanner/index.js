@@ -16,14 +16,12 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
 import React, { Component } from 'react';
 import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
-import { APP_CONFIG_INITIALIZED, mergeConfig, subscribe } from '@edx/frontend-platform';
-import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
+import { APP_CONFIG_INITIALIZED, getConfig, mergeConfig, subscribe } from '@edx/frontend-platform';
+import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
 subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
-    LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
-    COOKIE_POLICY_COOKIE_DOMAIN: process.env.COOKIE_POLICY_COOKIE_DOMAIN,
-    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status'
+    LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference'
   }, 'Cookie Policy Banner additional config');
 });
 var CookieBanner = /*#__PURE__*/function (_Component) {
@@ -78,20 +76,23 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
         policyText = _this$props.policyText;
       var open = this.state.open;
       var ietfTag = languageCode ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
+      var _getConfig = getConfig(),
+        LMS_BASE_URL = _getConfig.LMS_BASE_URL,
+        SITE_NAME = _getConfig.SITE_NAME;
       if (open) {
         return /*#__PURE__*/React.createElement("div", {
           lang: IETF_TAGS_TO_LANGUAGE_CODE[ietfTag],
           className: "edx-cookie-banner-wrapper",
           role: "complementary",
-          "aria-label": IETF_TAGS_TO_CONTAINER_ROLE_LABEL[ietfTag],
+          "aria-label": IETF_TAGS_TO_CONTAINER_ROLE_LABEL(SITE_NAME)[ietfTag],
           "aria-live": "polite"
         }, /*#__PURE__*/React.createElement(StatusAlert, {
           className: "edx-cookie-banner",
           open: this.state.open,
-          closeButtonAriaLabel: IETF_TAGS_TO_CLOSE_BUTTON_LABEL[ietfTag],
+          closeButtonAriaLabel: IETF_TAGS_TO_CLOSE_BUTTON_LABEL(SITE_NAME)[ietfTag],
           dialog: /*#__PURE__*/React.createElement("span", {
             dangerouslySetInnerHTML: {
-              __html: getPolicyHTML(ietfTag, policyText)
+              __html: getPolicyHTML(ietfTag, policyText, LMS_BASE_URL)
             }
           }),
           onClose: this.onClose
@@ -110,7 +111,7 @@ CookieBanner.defaultProps = {
 CookieBanner.propTypes = {
   onClose: PropTypes.func,
   languageCode: PropTypes.string,
-  policyText: PropTypes.shape(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, PropTypes.string), SPANISH_IETF_TAG, PropTypes.string)),
+  policyText: PropTypes.shape(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, PropTypes.string), SPANISH_IETF_TAG, PropTypes.string), UKRAINIAN_IETF_TAG, PropTypes.string)),
   isViewedCookieName: PropTypes.string
 };
 export default CookieBanner;

@@ -6,7 +6,7 @@ import {
   IETF_TAGS,
   LANGUAGE_CODE_TO_IETF_TAGS,
   LOCALHOST,
-  IETF_TAGS_TO_BANNER_TEXT,
+  getIetfTagToBannerText,
 } from './constants';
 
 ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN', 'COOKIE_POLICY_VIEWED_COOKIE_NAME'], 'Cookie Policy Banner component utilities');
@@ -79,11 +79,11 @@ const hasViewedCookieBanner = (cookieName = null) => {
   return !!cookieCreationData && !!new Cookie().get(cookieCreationData.cookieName);
 };
 
-const getPolicyHTML = (tag, overrideText = {}) => {
+const getPolicyHTML = (tag, overrideText = {}, LMS_BASE_URL = '') => {
   if (overrideText[tag]) {
     return overrideText[tag];
   }
-  return IETF_TAGS_TO_BANNER_TEXT[tag];
+  return getIetfTagToBannerText(LMS_BASE_URL)[tag];
 };
 
 export {

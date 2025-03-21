@@ -1,6 +1,6 @@
 import Cookie from 'universal-cookie';
 import { ensureConfig, getConfig } from '@edx/frontend-platform';
-import { DEFAULT_IETF_TAG, IETF_TAGS, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, IETF_TAGS_TO_BANNER_TEXT } from './constants';
+import { DEFAULT_IETF_TAG, IETF_TAGS, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, getIetfTagToBannerText } from './constants';
 ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN', 'COOKIE_POLICY_VIEWED_COOKIE_NAME'], 'Cookie Policy Banner component utilities');
 
 // Setting path to '/' to be applied to all subdomains
@@ -59,9 +59,10 @@ var hasViewedCookieBanner = function hasViewedCookieBanner() {
 };
 var getPolicyHTML = function getPolicyHTML(tag) {
   var overrideText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var LMS_BASE_URL = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   if (overrideText[tag]) {
     return overrideText[tag];
   }
-  return IETF_TAGS_TO_BANNER_TEXT[tag];
+  return getIetfTagToBannerText(LMS_BASE_URL)[tag];
 };
 export { getIETFTag, createHasViewedCookieBanner, hasViewedCookieBanner, getCookieCreationData, getIETFTagFromLanguageCode, getPolicyHTML };
