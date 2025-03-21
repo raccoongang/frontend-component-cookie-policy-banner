@@ -1,14 +1,10 @@
-import { ensureConfig, getConfig } from '@edx/frontend-platform';
+import { ensureConfig } from '@edx/frontend-platform';
 
 ensureConfig(['LMS_BASE_URL', 'SITE_NAME'], 'Cookie Policy Banner component constants');
 
-// Read the env variables
-const { LMS_BASE_URL, SITE_NAME } = getConfig();
-// end of env vars reading
-
 // general constants
 const LOCALHOST = 'localhost';
-const COOKIE_POLICY_PAGE_URL = `${LMS_BASE_URL}/cookies`;
+const getCookiePolicyPageUrl = (LMS_BASE_URL) => `${LMS_BASE_URL}/cookies`;
 // end general constants
 
 // i18n related constants
@@ -23,21 +19,21 @@ const UKRAINIAN_LANGUAGE_CODE = 'uk';
 
 const IETF_TAGS = Object.freeze([ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG]);
 
-const IETF_TAGS_TO_CONTAINER_ROLE_LABEL = Object.freeze({
+const IETF_TAGS_TO_CONTAINER_ROLE_LABEL = (SITE_NAME) => Object.freeze({
   [ENGLISH_IETF_TAG]: `Notice about use of cookies on ${SITE_NAME}.`,
   [SPANISH_IETF_TAG]: `Aviso sobre el uso de cookies en ${SITE_NAME}.`,
 });
-const IETF_TAGS_TO_CLOSE_BUTTON_LABEL = Object.freeze({
+const IETF_TAGS_TO_CLOSE_BUTTON_LABEL = (SITE_NAME) => Object.freeze({
   [ENGLISH_IETF_TAG]: `Close the notice about use of cookies on ${SITE_NAME}.`,
   [SPANISH_IETF_TAG]: `Cerrar aviso sobre el uso de cookies en ${SITE_NAME}.`,
 });
-const bannerLinkOpen = `<a href="${COOKIE_POLICY_PAGE_URL}" class="policy-link" target="_blank">`;
+const getBannerLinkOpen = (LMS_BASE_URL) => `<a href="${getCookiePolicyPageUrl(LMS_BASE_URL)}" class="policy-link" target="_blank">`;
 const bannerLinkClose = '</a>';
-const IETF_TAGS_TO_BANNER_TEXT = Object.freeze({
-  [ENGLISH_IETF_TAG]: `We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ${bannerLinkOpen}Cookie Policy${bannerLinkClose}. For a complete overview of all cookies used, please see your personal settings.
+const getIetfTagToBannerText = (LMS_BASE_URL) => Object.freeze({
+  [ENGLISH_IETF_TAG]: `We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ${getBannerLinkOpen(LMS_BASE_URL)}Cookie Policy${bannerLinkClose}. For a complete overview of all cookies used, please see your personal settings.
   `,
-  [SPANISH_IETF_TAG]: `Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga más información al respecto en ${bannerLinkOpen}Política de cookies${bannerLinkClose}. Para obtener una descripción completa de todas las cookies utilizadas, consulte su configuración personal.`,
-  [UKRAINIAN_IETF_TAG]: `Ми використовуємо файли cookie на цьому сайті, щоб покращити ваш досвід користувача. Використовуючи цей вебсайт, ви погоджуєтесь з їхнім використанням. Докладніше читайте в ${bannerLinkOpen}Політиці використання файлів cookie${bannerLinkClose}. Для перегляду всіх файлів cookie, що використовуються, будь ласка, перегляньте свої особисті налаштування.`,
+  [SPANISH_IETF_TAG]: `Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga más información al respecto en ${getBannerLinkOpen(LMS_BASE_URL)}Política de cookies${bannerLinkClose}. Para obtener una descripción completa de todas las cookies utilizadas, consulte su configuración personal.`,
+  [UKRAINIAN_IETF_TAG]: `Ми використовуємо файли cookie на цьому сайті, щоб покращити ваш досвід користувача. Використовуючи цей вебсайт, ви погоджуєтесь з їхнім використанням. Докладніше читайте в ${getBannerLinkOpen(LMS_BASE_URL)}Політиці використання файлів cookie${bannerLinkClose}. Для перегляду всіх файлів cookie, що використовуються, будь ласка, перегляньте свої особисті налаштування.`,
 });
 const IETF_TAGS_TO_LANGUAGE_CODE = Object.freeze({
   [ENGLISH_IETF_TAG]: ENGLISH_LANGUAGE_CODE,
@@ -76,10 +72,9 @@ export {
   IETF_TAGS,
   IETF_TAGS_TO_CONTAINER_ROLE_LABEL,
   IETF_TAGS_TO_CLOSE_BUTTON_LABEL,
-  IETF_TAGS_TO_BANNER_TEXT,
+  getIetfTagToBannerText,
   IETF_TAGS_TO_LANGUAGE_CODE,
   LANGUAGE_CODE_TO_IETF_TAGS,
   LOCALHOST,
-  COOKIE_POLICY_PAGE_URL,
   getPolicyHTML,
 };

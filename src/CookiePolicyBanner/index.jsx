@@ -4,7 +4,7 @@ import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
 
 import {
-  APP_CONFIG_INITIALIZED, mergeConfig, subscribe,
+  APP_CONFIG_INITIALIZED, getConfig, mergeConfig, subscribe,
 } from '@edx/frontend-platform';
 import {
   ENGLISH_IETF_TAG,
@@ -25,8 +25,6 @@ import {
 subscribe(APP_CONFIG_INITIALIZED, () => {
   mergeConfig({
     LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
-    COOKIE_POLICY_COOKIE_DOMAIN: process.env.COOKIE_POLICY_COOKIE_DOMAIN,
-    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status',
   }, 'Cookie Policy Banner additional config');
 });
 
@@ -68,20 +66,22 @@ class CookieBanner extends Component {
     const ietfTag = languageCode
       ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
 
+    const { LMS_BASE_URL, SITE_NAME } = getConfig();
+
     if (open) {
       return (
         <div
           lang={IETF_TAGS_TO_LANGUAGE_CODE[ietfTag]}
           className="edx-cookie-banner-wrapper"
           role="complementary"
-          aria-label={IETF_TAGS_TO_CONTAINER_ROLE_LABEL[ietfTag]}
+          aria-label={IETF_TAGS_TO_CONTAINER_ROLE_LABEL(SITE_NAME)[ietfTag]}
           aria-live="polite"
         >
           <StatusAlert
             className="edx-cookie-banner"
             open={this.state.open}
-            closeButtonAriaLabel={IETF_TAGS_TO_CLOSE_BUTTON_LABEL[ietfTag]}
-            dialog={(<span dangerouslySetInnerHTML={{ __html: getPolicyHTML(ietfTag, policyText) }} />)}
+            closeButtonAriaLabel={IETF_TAGS_TO_CLOSE_BUTTON_LABEL(SITE_NAME)[ietfTag]}
+            dialog={(<span dangerouslySetInnerHTML={{ __html: getPolicyHTML(ietfTag, policyText, LMS_BASE_URL) }} />)}
             onClose={this.onClose}
           />
         </div>

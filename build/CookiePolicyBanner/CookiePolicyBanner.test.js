@@ -13,7 +13,7 @@ describe('CookiePolicyBanner', function () {
   var onClose;
   var expectedTag = ENGLISH_IETF_TAG;
   var expectedLanguageCode = ENGLISH_LANGUAGE_CODE;
-  var expectedWrapperAriaLabel = IETF_TAGS_TO_CONTAINER_ROLE_LABEL[expectedTag];
+  var expectedWrapperAriaLabel = IETF_TAGS_TO_CONTAINER_ROLE_LABEL('some-name')[expectedTag];
   var expectedPolicyHTML = 'foobar';
   // eslint-disable-next-line
   var expectedDialog = /*#__PURE__*/React.createElement("span", {
