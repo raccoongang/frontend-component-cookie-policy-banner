@@ -79,8 +79,6 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
       var _getConfig = getConfig(),
         LMS_BASE_URL = _getConfig.LMS_BASE_URL,
         SITE_NAME = _getConfig.SITE_NAME;
-      console.log('adadadadasd -----------', '---------- ');
-      console.log(IETF_TAGS_TO_CONTAINER_ROLE_LABEL(SITE_NAME)[ietfTag], '---------- IETF_TAGS_TO_CONTAINER_ROLE_LABEL(SITE_NAME)[ietfTag]');
       if (open) {
         return /*#__PURE__*/React.createElement("div", {
           lang: IETF_TAGS_TO_LANGUAGE_CODE[ietfTag],

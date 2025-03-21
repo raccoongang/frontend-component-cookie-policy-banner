@@ -18,6 +18,14 @@ import {
 jest.mock('../utilities');
 jest.mock('../constants');
 
+IETF_TAGS_TO_CONTAINER_ROLE_LABEL.mockImplementation((siteName) => ({
+  en: `Notice about use of cookies on ${siteName}.`,
+}));
+
+IETF_TAGS_TO_CONTAINER_ROLE_LABEL.mockImplementation((siteName) => ({
+  en: `Close the notice about use of cookies on ${siteName}`,
+}));
+
 describe('CookiePolicyBanner', () => {
   let props;
   let mountedBanner;
