@@ -5,7 +5,6 @@ $cookie-banner-text-color: #4e4e4e !default;
 $cookie-banner-cta-base: #19291F !default;
 $cookie-banner-cta-hover: #075683 !default;
 
-$font-family-sans-serif: "Open Sans", Arial, sans-serif;
 $small-font-size: 14px;
 
 .edx-cookie-banner-wrapper {
@@ -17,12 +16,6 @@ $small-font-size: 14px;
   text-align: left;
   line-height: 1.5;
   position: relative;
-
-  font: {
-    family: $font-family-sans-serif !important;
-    size: 1rem;
-    weight: 400;
-  }
 
   .alert {
     position: relative;

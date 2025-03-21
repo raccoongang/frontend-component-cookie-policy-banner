@@ -8,6 +8,7 @@ and this project adheres to customized Semantic Versioning e.g.: `quince-rg.1`
 
 [Unreleased]
 ************
+
 Fixed:
 ======
 * Added position: relative property for correct z-index behavior on different MFEs [RGOeX-26826]
@@ -15,6 +16,7 @@ Fixed:
 
 Added:
 =====
+* Added support for custom fonts if used in the project – it will be inherited by Paragon components (RGInt-424)
 * Update the component to be compatible with redwood release (RGOeX-26785)
 * Added z-index to the cookie banner wrapper (RGOeX-26418)
 
