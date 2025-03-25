@@ -68,6 +68,7 @@ class CookieBanner extends Component {
       ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
 
     const { LMS_BASE_URL, SITE_NAME } = getConfig();
+    console.log(LMS_BASE_URL, '-------- LMS_BASE_URL');
 
     if (open) {
       return (
