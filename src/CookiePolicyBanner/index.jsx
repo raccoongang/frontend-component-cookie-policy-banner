@@ -25,6 +25,7 @@ import {
 subscribe(APP_CONFIG_INITIALIZED, () => {
   mergeConfig({
     LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
+    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status',
   }, 'Cookie Policy Banner additional config');
 });
 
@@ -67,6 +68,7 @@ class CookieBanner extends Component {
       ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
 
     const { LMS_BASE_URL, SITE_NAME } = getConfig();
+    console.log(LMS_BASE_URL, '-------- LMS_BASE_URL');
 
     if (open) {
       return (
