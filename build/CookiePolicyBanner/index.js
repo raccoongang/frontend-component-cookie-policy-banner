@@ -21,7 +21,8 @@ import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG, IETF_TAGS_TO_CL
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
 subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
-    LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference'
+    LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
+    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status'
   }, 'Cookie Policy Banner additional config');
 });
 var CookieBanner = /*#__PURE__*/function (_Component) {
