@@ -13,16 +13,18 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 /* eslint-disable react/no-danger */
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import { APP_CONFIG_INITIALIZED, getConfig, mergeConfig, subscribe } from '@edx/frontend-platform';
+import { AppContext } from '@edx/frontend-platform/react';
 import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
 subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
     LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
     COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status'
+    // COOKIE_POLICY_COOKIE_DOMAIN: process.env.COOKIE_POLICY_COOKIE_DOMAIN,
   }, 'Cookie Policy Banner additional config');
 });
 var CookieBanner = /*#__PURE__*/function (_Component) {
@@ -30,6 +32,11 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
     var _this;
     _classCallCheck(this, CookieBanner);
     _this = _callSuper(this, CookieBanner, [props]);
+    // console.log(this.context.config, '---------- this.context.config');
+
+    var _getConfig = getConfig(),
+      LMS_BASE_URL = _getConfig.LMS_BASE_URL;
+    console.log(LMS_BASE_URL, '---------- LMS_BASE_URL');
     _this.onClose = _this.onClose.bind(_this);
     _this.state = {
       open: false
@@ -77,10 +84,9 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
         policyText = _this$props.policyText;
       var open = this.state.open;
       var ietfTag = languageCode ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
-      var _getConfig = getConfig(),
-        LMS_BASE_URL = _getConfig.LMS_BASE_URL,
-        SITE_NAME = _getConfig.SITE_NAME;
-      console.log(LMS_BASE_URL, '-------- LMS_BASE_URL');
+      var _getConfig2 = getConfig(),
+        LMS_BASE_URL = _getConfig2.LMS_BASE_URL,
+        SITE_NAME = _getConfig2.SITE_NAME;
       if (open) {
         return /*#__PURE__*/React.createElement("div", {
           lang: IETF_TAGS_TO_LANGUAGE_CODE[ietfTag],
@@ -104,6 +110,7 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
     }
   }]);
 }(Component);
+CookieBanner.contextType = AppContext;
 CookieBanner.defaultProps = {
   onClose: function onClose() {},
   languageCode: undefined,

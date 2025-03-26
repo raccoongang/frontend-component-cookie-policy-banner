@@ -15,13 +15,13 @@ ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN', 'COOKIE_PO
 // Setting maxAge to 2^31 -1
 // because Number.SAFE_MAX_INTEGER does not get processed properly by the browser
 // nor does the max Date defined in http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1
-const getCookieCreationData = (cookieName = null) => {
+const getCookieCreationData = (cookieName = null, cookieDomain = '') => {
   let domain;
-  const name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME;
+  const name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status';
   if (window.location.hostname.indexOf(LOCALHOST) >= 0) {
     domain = LOCALHOST;
   } else {
-    domain = getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
+    domain = cookieDomain || getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
   }
   return {
     cookieName: name,
@@ -52,8 +52,8 @@ const getIETFTagFromLanguageCode = (languageCode) => {
   return ietfTag;
 };
 
-const createHasViewedCookieBanner = (cookieName = null) => {
-  const cookieCreationData = getCookieCreationData(cookieName);
+const createHasViewedCookieBanner = (cookieName = null, cookieDomain = '') => {
+  const cookieCreationData = getCookieCreationData(cookieName, cookieDomain);
 
   if (!!cookieCreationData
       && !!cookieCreationData.cookieName
@@ -74,8 +74,8 @@ const createHasViewedCookieBanner = (cookieName = null) => {
   return false;
 };
 
-const hasViewedCookieBanner = (cookieName = null) => {
-  const cookieCreationData = getCookieCreationData(cookieName);
+const hasViewedCookieBanner = (cookieName = null, cookieDomain = '') => {
+  const cookieCreationData = getCookieCreationData(cookieName, cookieDomain);
   return !!cookieCreationData && !!new Cookie().get(cookieCreationData.cookieName);
 };
 
