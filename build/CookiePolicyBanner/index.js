@@ -16,7 +16,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
 import React, { Component } from 'react';
 import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
-import { APP_CONFIG_INITIALIZED, getConfig, mergeConfig, subscribe } from '@edx/frontend-platform';
+import { APP_CONFIG_INITIALIZED, mergeConfig, subscribe } from '@edx/frontend-platform';
+import { AppContext } from '@edx/frontend-platform/react';
 import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, UKRAINIAN_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
 subscribe(APP_CONFIG_INITIALIZED, function () {
@@ -40,7 +41,7 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
   return _createClass(CookieBanner, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.toggleDisplay(!hasViewedCookieBanner(this.props.isViewedCookieName));
+      this.toggleDisplay(!hasViewedCookieBanner(this.props.isViewedCookieName, this.context.config.COOKIE_POLICY_COOKIE_DOMAIN));
     }
   }, {
     key: "componentDidUpdate",
@@ -58,7 +59,7 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
       this.setState({
         open: false
       }, function () {
-        createHasViewedCookieBanner(_this2.props.isViewedCookieName);
+        createHasViewedCookieBanner(_this2.props.isViewedCookieName, _this2.context.config.COOKIE_POLICY_COOKIE_DOMAIN);
         _this2.props.onClose(event);
       });
     }
@@ -77,10 +78,9 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
         policyText = _this$props.policyText;
       var open = this.state.open;
       var ietfTag = languageCode ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
-      var _getConfig = getConfig(),
-        LMS_BASE_URL = _getConfig.LMS_BASE_URL,
-        SITE_NAME = _getConfig.SITE_NAME;
-      console.log(LMS_BASE_URL, '-------- LMS_BASE_URL');
+      var _this$context$config = this.context.config,
+        LMS_BASE_URL = _this$context$config.LMS_BASE_URL,
+        SITE_NAME = _this$context$config.SITE_NAME;
       if (open) {
         return /*#__PURE__*/React.createElement("div", {
           lang: IETF_TAGS_TO_LANGUAGE_CODE[ietfTag],
@@ -104,6 +104,7 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
     }
   }]);
 }(Component);
+CookieBanner.contextType = AppContext;
 CookieBanner.defaultProps = {
   onClose: function onClose() {},
   languageCode: undefined,

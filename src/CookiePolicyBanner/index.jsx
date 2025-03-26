@@ -4,8 +4,9 @@ import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
 
 import {
-  APP_CONFIG_INITIALIZED, getConfig, mergeConfig, subscribe,
+  APP_CONFIG_INITIALIZED, mergeConfig, subscribe,
 } from '@edx/frontend-platform';
+import { AppContext } from '@edx/frontend-platform/react';
 import {
   ENGLISH_IETF_TAG,
   SPANISH_IETF_TAG,
@@ -39,7 +40,9 @@ class CookieBanner extends Component {
   }
 
   componentDidMount() {
-    this.toggleDisplay(!hasViewedCookieBanner(this.props.isViewedCookieName));
+    this.toggleDisplay(
+      !hasViewedCookieBanner(this.props.isViewedCookieName, this.context.config.COOKIE_POLICY_COOKIE_DOMAIN),
+    );
   }
 
   componentDidUpdate() {
@@ -52,7 +55,7 @@ class CookieBanner extends Component {
 
   onClose(event) {
     this.setState({ open: false }, () => {
-      createHasViewedCookieBanner(this.props.isViewedCookieName);
+      createHasViewedCookieBanner(this.props.isViewedCookieName, this.context.config.COOKIE_POLICY_COOKIE_DOMAIN);
       this.props.onClose(event);
     });
   }
@@ -67,8 +70,7 @@ class CookieBanner extends Component {
     const ietfTag = languageCode
       ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
 
-    const { LMS_BASE_URL, SITE_NAME } = getConfig();
-    console.log(LMS_BASE_URL, '-------- LMS_BASE_URL');
+    const { LMS_BASE_URL, SITE_NAME } = this.context.config;
 
     if (open) {
       return (
@@ -93,6 +95,8 @@ class CookieBanner extends Component {
     return false;
   }
 }
+
+CookieBanner.contextType = AppContext;
 
 CookieBanner.defaultProps = {
   onClose: () => {},
