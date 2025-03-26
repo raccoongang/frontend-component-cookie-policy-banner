@@ -9,12 +9,13 @@ ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN', 'COOKIE_PO
 // nor does the max Date defined in http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1
 var getCookieCreationData = function getCookieCreationData() {
   var cookieName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var cookieDomain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   var domain;
-  var name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME;
+  var name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status';
   if (window.location.hostname.indexOf(LOCALHOST) >= 0) {
     domain = LOCALHOST;
   } else {
-    domain = getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
+    domain = cookieDomain || getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
   }
   return {
     cookieName: name,
@@ -40,7 +41,8 @@ var getIETFTagFromLanguageCode = function getIETFTagFromLanguageCode(languageCod
 };
 var createHasViewedCookieBanner = function createHasViewedCookieBanner() {
   var cookieName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var cookieCreationData = getCookieCreationData(cookieName);
+  var cookieDomain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var cookieCreationData = getCookieCreationData(cookieName, cookieDomain);
   if (!!cookieCreationData && !!cookieCreationData.cookieName && !!cookieCreationData.domain && !!cookieCreationData.path && !!cookieCreationData.maxAge) {
     return new Cookie().set(cookieCreationData.cookieName, 'dismiss',
     // for consistency with legacy cookie policy banner
@@ -54,7 +56,8 @@ var createHasViewedCookieBanner = function createHasViewedCookieBanner() {
 };
 var hasViewedCookieBanner = function hasViewedCookieBanner() {
   var cookieName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var cookieCreationData = getCookieCreationData(cookieName);
+  var cookieDomain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var cookieCreationData = getCookieCreationData(cookieName, cookieDomain);
   return !!cookieCreationData && !!new Cookie().get(cookieCreationData.cookieName);
 };
 var getPolicyHTML = function getPolicyHTML(tag) {
