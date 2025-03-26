@@ -24,7 +24,6 @@ subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
     LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
     COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status'
-    // COOKIE_POLICY_COOKIE_DOMAIN: process.env.COOKIE_POLICY_COOKIE_DOMAIN,
   }, 'Cookie Policy Banner additional config');
 });
 var CookieBanner = /*#__PURE__*/function (_Component) {
@@ -79,8 +78,9 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
         policyText = _this$props.policyText;
       var open = this.state.open;
       var ietfTag = languageCode ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
-      var LMS_BASE_URL = this.context.config.LMS_BASE_URL;
-      var SITE_NAME = this.context.config.SITE_NAME;
+      var _this$context$config = this.context.config,
+        LMS_BASE_URL = _this$context$config.LMS_BASE_URL,
+        SITE_NAME = _this$context$config.SITE_NAME;
       if (open) {
         return /*#__PURE__*/React.createElement("div", {
           lang: IETF_TAGS_TO_LANGUAGE_CODE[ietfTag],
