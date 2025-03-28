@@ -78,6 +78,7 @@ var CookieBanner = /*#__PURE__*/function (_Component) {
         policyText = _this$props.policyText;
       var open = this.state.open;
       var ietfTag = languageCode ? getIETFTagFromLanguageCode(languageCode) : getIETFTag();
+      console.log('this.context', this.context);
       var _this$context$config = this.context.config,
         LMS_BASE_URL = _this$context$config.LMS_BASE_URL,
         SITE_NAME = _this$context$config.SITE_NAME;
