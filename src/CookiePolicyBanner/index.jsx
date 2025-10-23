@@ -8,6 +8,7 @@ import {
 } from '@edx/frontend-platform';
 import {
   ENGLISH_IETF_TAG,
+  FRENCH_CA_IETF_TAG,
   SPANISH_IETF_TAG,
   IETF_TAGS_TO_CLOSE_BUTTON_LABEL,
   IETF_TAGS_TO_CONTAINER_ROLE_LABEL,
@@ -103,6 +104,7 @@ CookieBanner.propTypes = {
   languageCode: PropTypes.string,
   policyText: PropTypes.shape({
     [ENGLISH_IETF_TAG]: PropTypes.string,
+    [FRENCH_CA_IETF_TAG]: PropTypes.string,
     [SPANISH_IETF_TAG]: PropTypes.string,
   }),
   isViewedCookieName: PropTypes.string,
