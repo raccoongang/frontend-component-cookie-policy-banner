@@ -38,7 +38,7 @@ const bannerLinkClose = '</a>';
 const IETF_TAGS_TO_BANNER_TEXT = Object.freeze({
   [ENGLISH_IETF_TAG]: `We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ${bannerLinkOpen}Cookie Policy${bannerLinkClose}. For a complete overview of all cookies used, please see your personal settings.
   `,
-  [FRENCH_CA_IETF_TAG]: `Nous utilisons des témoins sur ce site pour améliorer votre expérience. En utilisant ce site, vous acceptez cette utilisation. En savoir plus dans la {link_start}Politique relative aux témoins{link_end}. For a complete overview of all cookies used, please see your personal settings.
+  [FRENCH_CA_IETF_TAG]: `Nous utilisons des témoins sur ce site pour améliorer votre expérience. En utilisant ce site, vous acceptez cette utilisation. En savoir plus dans la ${bannerLinkOpen}Politique relative aux témoins${bannerLinkOpen}. For a complete overview of all cookies used, please see your personal settings.
   `,
   [SPANISH_IETF_TAG]: `Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga más información al respecto en ${bannerLinkOpen}Política de cookies${bannerLinkClose}. Para obtener una descripción completa de todas las cookies utilizadas, consulte su configuración personal.`,
 });
