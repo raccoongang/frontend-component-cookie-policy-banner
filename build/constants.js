@@ -19,18 +19,20 @@ var COOKIE_POLICY_PAGE_URL = "".concat(LMS_BASE_URL, "/cookies");
 // i18n related constants
 // https://en.wikipedia.org/wiki/IETF_language_tag
 var ENGLISH_IETF_TAG = 'en';
+var FRENCH_CA_IETF_TAG = 'fr_CA';
 var SPANISH_IETF_TAG = 'es-419';
 var DEFAULT_IETF_TAG = ENGLISH_IETF_TAG;
 var ENGLISH_LANGUAGE_CODE = 'en';
+var FRENCH_CA_LANGUAGE_CODE = 'fr-ca';
 var SPANISH_LANGUAGE_CODE = 'es';
-var IETF_TAGS = Object.freeze([ENGLISH_IETF_TAG, SPANISH_IETF_TAG]);
-var IETF_TAGS_TO_CONTAINER_ROLE_LABEL = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Notice about use of cookies on ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
-var IETF_TAGS_TO_CLOSE_BUTTON_LABEL = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Close the notice about use of cookies on ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Cerrar aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
+var IETF_TAGS = Object.freeze([ENGLISH_IETF_TAG, FRENCH_CA_IETF_TAG, SPANISH_IETF_TAG]);
+var IETF_TAGS_TO_CONTAINER_ROLE_LABEL = Object.freeze(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Notice about use of cookies on ".concat(SITE_NAME, ".")), FRENCH_CA_IETF_TAG, "Avis concernant l'utilisation des t\xE9moins sur ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
+var IETF_TAGS_TO_CLOSE_BUTTON_LABEL = Object.freeze(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "Close the notice about use of cookies on ".concat(SITE_NAME, ".")), FRENCH_CA_IETF_TAG, "Fermer l'avis concernant l'utilisation des t\xE9moins sur ".concat(SITE_NAME, ".")), SPANISH_IETF_TAG, "Cerrar aviso sobre el uso de cookies en ".concat(SITE_NAME, ".")));
 var bannerLinkOpen = "<a href=\"".concat(COOKIE_POLICY_PAGE_URL, "\" class=\"policy-link\" target=\"_blank\">");
 var bannerLinkClose = '</a>';
-var IETF_TAGS_TO_BANNER_TEXT = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ".concat(bannerLinkOpen, "Cookie Policy").concat(bannerLinkClose, ". For a complete overview of all cookies used, please see your personal settings.\n  ")), SPANISH_IETF_TAG, "Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga m\xE1s informaci\xF3n al respecto en ".concat(bannerLinkOpen, "Pol\xEDtica de cookies").concat(bannerLinkClose, ". Para obtener una descripci\xF3n completa de todas las cookies utilizadas, consulte su configuraci\xF3n personal.")));
-var IETF_TAGS_TO_LANGUAGE_CODE = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, ENGLISH_LANGUAGE_CODE), SPANISH_IETF_TAG, SPANISH_LANGUAGE_CODE));
-var LANGUAGE_CODE_TO_IETF_TAGS = Object.freeze(_defineProperty(_defineProperty({}, ENGLISH_LANGUAGE_CODE, ENGLISH_IETF_TAG), SPANISH_LANGUAGE_CODE, SPANISH_IETF_TAG));
+var IETF_TAGS_TO_BANNER_TEXT = Object.freeze(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, "We use cookies on this site to enhance your user experience. By using this website, you accept this use. Learn more about it in ".concat(bannerLinkOpen, "Cookie Policy").concat(bannerLinkClose, ". For a complete overview of all cookies used, please see your personal settings.\n  ")), FRENCH_CA_IETF_TAG, "Nous utilisons des t\xE9moins sur ce site pour am\xE9liorer votre exp\xE9rience. En utilisant ce site, vous acceptez cette utilisation. En savoir plus dans la ".concat(bannerLinkOpen, "Politique relative aux t\xE9moins").concat(bannerLinkClose, ". Pour un aper\xE7u complet de tous les t\xE9moins utilis\xE9s, veuillez consulter vos param\xE8tres personnels.\n  ")), SPANISH_IETF_TAG, "Utilizamos cookies en este sitio para mejorar su experiencia de usuario. Al utilizar este sitio web, usted acepta este uso. Obtenga m\xE1s informaci\xF3n al respecto en ".concat(bannerLinkOpen, "Pol\xEDtica de cookies").concat(bannerLinkClose, ". Para obtener una descripci\xF3n completa de todas las cookies utilizadas, consulte su configuraci\xF3n personal.")));
+var IETF_TAGS_TO_LANGUAGE_CODE = Object.freeze(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_IETF_TAG, ENGLISH_LANGUAGE_CODE), FRENCH_CA_IETF_TAG, FRENCH_CA_LANGUAGE_CODE), SPANISH_IETF_TAG, SPANISH_LANGUAGE_CODE));
+var LANGUAGE_CODE_TO_IETF_TAGS = Object.freeze(_defineProperty(_defineProperty(_defineProperty({}, ENGLISH_LANGUAGE_CODE, ENGLISH_IETF_TAG), FRENCH_CA_LANGUAGE_CODE, FRENCH_CA_IETF_TAG), SPANISH_LANGUAGE_CODE, SPANISH_IETF_TAG));
 // end of i18n constants
 
 var getPolicyHTML = function getPolicyHTML(tag) {
@@ -39,11 +41,15 @@ var getPolicyHTML = function getPolicyHTML(tag) {
     return overrideText[tag];
   }
   var linkClose = '</a>';
-  if (tag === SPANISH_IETF_TAG) {
+  if (tag === FRENCH_CA_IETF_TAG) {
     var _linkOpen = '<a href="https://edx.org/es/edx-privacy-policy" class="policy-link" target = "_blank">';
-    return "edX y sus Miembros usan cookies y otras tecnolog\xEDas de seguimiento para fines de rendimiento, an\xE1lisis y marketing. Al usar este sitio web, aceptas este uso. Obt\xE9n m\xE1s informaci\xF3n sobre estas tecnolog\xEDas en la ".concat(_linkOpen, "Pol\xEDtica de privacidad").concat(linkClose, ".");
+    return "edX et ses membres utilisent des t\xE9moins et d'autres technologies de suivi \xE0 des fins de performance, d'analytique et de marketing. En utilisant ce site Web, vous acceptez cette utilisation. Pour en savoir plus sur ces technologies, consultez la ".concat(_linkOpen, "Politique de confidentialit\xE9").concat(linkClose, ".");
+  }
+  if (tag === SPANISH_IETF_TAG) {
+    var _linkOpen2 = '<a href="https://edx.org/es/edx-privacy-policy" class="policy-link" target = "_blank">';
+    return "edX y sus Miembros usan cookies y otras tecnolog\xEDas de seguimiento para fines de rendimiento, an\xE1lisis y marketing. Al usar este sitio web, aceptas este uso. Obt\xE9n m\xE1s informaci\xF3n sobre estas tecnolog\xEDas en la ".concat(_linkOpen2, "Pol\xEDtica de privacidad").concat(linkClose, ".");
   }
   var linkOpen = '<a href="https://edx.org/edx-privacy-policy" class="policy-link" target = "_blank">';
   return "edX and its Members use cookies and other tracking technologies for performance, analytics, and marketing purposes. By using this website, you accept this use. Learn more about these technologies in the ".concat(linkOpen, "Privacy Policy").concat(linkClose, ".");
 };
-export { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, DEFAULT_IETF_TAG, ENGLISH_LANGUAGE_CODE, IETF_TAGS, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_BANNER_TEXT, IETF_TAGS_TO_LANGUAGE_CODE, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, COOKIE_POLICY_PAGE_URL, getPolicyHTML };
+export { ENGLISH_IETF_TAG, FRENCH_CA_IETF_TAG, SPANISH_IETF_TAG, DEFAULT_IETF_TAG, ENGLISH_LANGUAGE_CODE, IETF_TAGS, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_BANNER_TEXT, IETF_TAGS_TO_LANGUAGE_CODE, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, COOKIE_POLICY_PAGE_URL, getPolicyHTML };
